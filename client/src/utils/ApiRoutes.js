@@ -1,5 +1,5 @@
-export const HOST = "http://localhost:3005";
-// export const HOST = "https://chatterbox-7n4n.onrender.com";
+// export const HOST = "http://localhost:3005";
+export const HOST = "https://sandesha-1fzk.onrender.com";
 
 const AUTH_ROUTE = `${HOST}/api/auth`;
 const MESSAGES_ROUTE = `${HOST}/api/messages`;
