@@ -2,7 +2,7 @@ import { on } from "events";
 import getPrismaInstance from "../utils/PrismaClient.js";
 import { renameSync } from "fs";
 import { translate } from "./AWSTranslateController.js";
-import cron from "node-cron";
+import {scheduleJob} from 'node-schedule';
 
 export const addMessage = async (req, res, next) => {
   try {
@@ -232,7 +232,7 @@ export const getInitialContactsWithMessages = async (req, res, next) => {
 export const scheduleMessage = async (req, res, next) => {
   const { scheduledTime } = req.body;
   try {
-    const task = cron.schedule(
+    const task = scheduleJob(
       scheduledTime,
       async function () {
         try {
@@ -257,12 +257,8 @@ export const scheduleMessage = async (req, res, next) => {
         } catch (error) {
           next(error);
         }
-      },
-      {
-        scheduled: true,
       }
     );
-    task.start();
   } catch (error) {
     next(error);
   }
